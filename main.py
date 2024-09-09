@@ -1,5 +1,6 @@
 import turtle as trtl
 
+
 class Flower:
     spacer = 0
 
@@ -79,7 +80,7 @@ class Flower:
             self.turtle.begin_fill()
             self.turtle.pensize(6)
             self.turtle.circle(30)
-            self.turtle.right(360 / self.num_petals)  
+            self.turtle.right(360 / self.num_petals)
             self.turtle.end_fill()
         self.turtle.setheading(0)
         self.turtle.right(90)
@@ -96,11 +97,13 @@ class Flower:
         wn = trtl.Screen()
         wn.mainloop()
 
+
 def main():
     flowerList = ["lily", "rose", "tulip", "lotus", "sunflower"]
     inputNumber, flowerType = prompt(flowerList)
 
     flower_batch = Flower(num_petals=6, num_flowers=inputNumber, type_of_flower=flowerType, spacing=100)
+
 
 def prompt(itemList):
     sourceInput = input("Hi, what would you like to generate: ").lower().strip()
@@ -127,20 +130,24 @@ def prompt(itemList):
     print([finalNum, finalItem])
     return finalNum, finalItem
 
+
 def itemMatching(itemList, allowedItems):
     # Normalize allowed items for comparison
     allowedItems_normalized = [item.lower() for item in allowedItems]
 
     pluralItems = ["roses", "tulips", "sunflowers", "lilies", "lotuses"]
-    
+
     for item in itemList:
         # Normalize item for comparison
         normalized_item = item.lower()
-        if normalized_item in allowedItems_normalized or normalized_item in pluralItems:
+        if normalized_item in allowedItems_normalized:
             return normalized_item.capitalize()
-        #elif normalized_item in pluralItems:
-            
+        elif normalized_item in pluralItems:
+            return normalized_item[:-1].capitalize()
+
+
     return None
+
 
 def numberSelector(input, numberList, item):
     finalNumSelector = (None, float('inf'))
@@ -159,6 +166,7 @@ def numberSelector(input, numberList, item):
 
     return finalNumSelector[0] if finalNumSelector[0] is not None else 1
 
+
 def verifyNum(inputMessage):
     while True:
         num = input(inputMessage)
@@ -167,9 +175,11 @@ def verifyNum(inputMessage):
         else:
             print("Please make it a number")
 
+
 def guidelines():
     print("Sorry, nothing you have given us follows community guidelines")
     prompt([])  # Pass an empty list to avoid recursion with an undefined itemList
+
 
 if __name__ == "__main__":
     main()
